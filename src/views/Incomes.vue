@@ -1,56 +1,17 @@
-<script setup></script>
+<script setup>
+import { ref, computed } from 'vue';
+import fetchData from '../function/fetchData.js';
+import IncomesTableComponent from '../components/IncomesTableComponent.vue';
+import IncomesChartComponent from '../components/IncomesChartComponent.vue';
+const data = ref([]);
+const url =
+  'http://109.73.206.144:6969/api/incomes?dateFrom=2025-10-01&dateTo=2025-10-30&page=1&key=E6kUTYrYwZq2tN4QEtyzsbEBk3ie&limit=500';
 
+fetchData(url, data);
+</script>
 <template>
-  <h1>Incomes!!!</h1>
-</template>
-
-<!-- <template>
   <div>
-    <h1>Incomes</h1>
-    <ChartComponent :data="chartData" />
-    <TableComponent :data="filteredData" />
-    <div>
-      <label>Filter:</label>
-      <input v-model="filter" placeholder="Filter by name" />
-    </div>
-    <pagination :total="totalPages" @page-changed="fetchData" />
+    <IncomesChartComponent :filteredData="data" />
+    <IncomesTableComponent :data="data" />
   </div>
 </template>
-
-<script>
-import { ref, onMounted, computed } from 'vue';
-import ChartComponent from '../components/ChartComponent.vue';
-import TableComponent from '../components/TableComponent.vue';
-
-export default {
-  components: { ChartComponent, TableComponent },
-  setup() {
-    const data = ref([]);
-    const filter = ref('');
-    const currentPage = ref(1);
-    const itemsPerPage = 10;
-
-    const filteredData = computed(() => {
-      return data.value.filter((item) => item.name.includes(filter.value));
-    });
-
-    const totalPages = computed(() => {
-      return Math.ceil(filteredData.value.length / itemsPerPage.value);
-    });
-
-    const fetchData = async () => {
-      // Здесь вы должны выполнить запрос к вашему API
-      const response = await fetch('/api/incomes');
-      data.value = await response.json();
-    };
-
-    onMounted(fetchData);
-
-    const chartData = computed(() => {
-      return data.value.map((item) => item.amount); // пример данных для графика
-    });
-
-    return { chartData, filteredData, filter, totalPages, fetchData };
-  },
-};
-</script> -->
