@@ -1,38 +1,10 @@
-# data-analysis-app
+# Пользовательский интерфейс для демонстрации показателей работы предприятия в виде таблиц и графиков.
 
-This template should help get you started developing with Vue 3 in Vite.
+Это spa-приложение написанное на JavaScript c использованием фреймворка Vue3. Приложение состоит из пяти страниц, с соответствуюшими эндпоинтами API ("/", "/incomes", "/orders", "/sales", "/stocks"). На каждой странице (кроме "/") добавлен один график и одна таблица с данными, которые получены из удаленной базы данных (насторойка удаленной базы данных, указание отчетного периода, осуществляется в корневом файле: '/config.js'). В каждой таблице имеется три фильтра по полям.
 
-## Recommended IDE Setup
+## Запуск приложения в режиме разработки
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Инсталлируйте все зависимости указанные в файле "package.json", для этого в терминале введите команду:
+   > npm insttal
+2. После установления всех зависимостей в терминале введите команду:
+   > npm run dev

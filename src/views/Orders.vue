@@ -3,10 +3,15 @@ import { ref, computed } from 'vue';
 import OrdersAndSalesTableComponent from '../components/OrdersAndSalesTableComponent.vue';
 import OrdersChartComponent from '../components/OrdersChartComponent.vue';
 import fetchData from '../function/fetchData.js';
+import {
+  PORT,
+  HOST,
+  KEY,
+  BEGINNING_OF_REPORTING_PERIOD,
+  END_OF_REPORTING_PERIOD,
+} from '../../config.js';
 const data = ref([]);
-const url =
-  'http://109.73.206.144:6969/api/orders?dateFrom=2025-09-01&dateTo=2025-09-30&page=1&key=E6kUTYrYwZq2tN4QEtyzsbEBk3ie&limit=500';
-
+const url = `http://${HOST}:${PORT}/api/orders?dateFrom=${BEGINNING_OF_REPORTING_PERIOD}&dateTo=${END_OF_REPORTING_PERIOD}&page=1&key=${KEY}&limit=500`;
 fetchData(url, data);
 </script>
 <template>

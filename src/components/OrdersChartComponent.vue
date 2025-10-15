@@ -1,30 +1,23 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue';
 import { Chart, registerables } from 'chart.js';
-
 Chart.register(...registerables);
-
 const props = defineProps({
   filteredData: Array,
 });
-
 const chartRefHours = ref(null);
 const chartInstanceHours = ref(null);
-
 const createHourChart = () => {
   const hourCounts = Array(24).fill(0);
   props.filteredData.forEach((item) => {
     const hour = new Date(item.date).getHours();
     hourCounts[hour]++;
   });
-
   const labels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
   const dataCounts = hourCounts;
-
   if (chartInstanceHours.value) {
     chartInstanceHours.value.destroy();
   }
-
   const ctx = chartRefHours.value.getContext('2d');
   chartInstanceHours.value = new Chart(ctx, {
     type: 'line',
@@ -59,18 +52,14 @@ const createHourChart = () => {
     },
   });
 };
-
 watch(() => props.filteredData, createHourChart); // Пересоздаем график при изменении данных
-
 onMounted(() => {
   createHourChart(); // Создаем график при монтировании компонента
 });
 </script>
-
 <template>
   <canvas ref="chartRefHours" width="400" height="200"></canvas>
 </template>
-
 <style scoped>
 canvas {
   max-width: 100%;

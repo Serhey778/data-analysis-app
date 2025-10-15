@@ -3,10 +3,11 @@ import { ref, computed } from 'vue';
 import fetchData from '../function/fetchData.js';
 import StocksTableComponent from '../components/StocksTableComponent.vue';
 import StocksChartComponent from '../components/StocksChartComponent.vue';
+import { PORT, HOST, KEY } from '../../config.js';
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().split('T')[0];
 const data = ref([]);
-const url =
-  'http://109.73.206.144:6969/api/stocks?dateFrom=2025-10-15&dateTo=&page=1&key=E6kUTYrYwZq2tN4QEtyzsbEBk3ie&limit=500';
-
+const url = `http://${HOST}:${PORT}/api/stocks?dateFrom=${formattedDate}&dateTo=&page=1&key=${KEY}&limit=500`;
 fetchData(url, data);
 </script>
 <template>

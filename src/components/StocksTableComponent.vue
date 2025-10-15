@@ -1,16 +1,13 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-
 const props = defineProps({
   data: Array,
 });
-
 const filters = ref({
   tech_size: '',
   last_change_date: '',
   supplier_article: '',
 });
-
 const filteredData = computed(() => {
   return props.data.filter((item) => {
     return (
@@ -63,20 +60,17 @@ const filteredData = computed(() => {
     </table>
   </div>
 </template>
-
 <style scoped>
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
 th,
 td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
 }
-
 th {
   background-color: #f4f4f4;
 }

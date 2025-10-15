@@ -1,19 +1,14 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue';
 import { Chart, registerables } from 'chart.js';
-
 Chart.register(...registerables);
-
 const props = defineProps({
   filteredData: Array,
 });
-
 const chartRef = ref(null);
 const chartInstance = ref(null);
-
 const createIncomeChart = () => {
   const incomeCounts = {};
-
   props.filteredData.forEach((item) => {
     const date = item.date.split(' ')[0];
     if (!incomeCounts[date]) {
@@ -28,7 +23,6 @@ const createIncomeChart = () => {
   if (chartInstance.value) {
     chartInstance.value.destroy();
   }
-
   const ctx = chartRef.value.getContext('2d');
   chartInstance.value = new Chart(ctx, {
     type: 'line',
@@ -63,17 +57,14 @@ const createIncomeChart = () => {
     },
   });
 };
-
 watch(() => props.filteredData, createIncomeChart);
 onMounted(() => {
   createIncomeChart();
 });
 </script>
-
 <template>
   <canvas ref="chartRef" width="400" height="200"></canvas>
 </template>
-
 <style scoped>
 canvas {
   max-width: 100%;
