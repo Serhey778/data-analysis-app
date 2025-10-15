@@ -45,7 +45,7 @@ const filteredData = computed(() => {
           <th>Дата</th>
           <th>Дата изменения</th>
           <th>Артикул поставщика</th>
-          <th>Размер</th>
+          <th>Технический размер</th>
         </tr>
       </thead>
       <tbody>

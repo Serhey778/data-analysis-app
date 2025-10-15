@@ -6,18 +6,20 @@ const props = defineProps({
 });
 
 const filters = ref({
-  income_id: '',
-  date: '',
+  tech_size: '',
+  last_change_date: '',
   supplier_article: '',
 });
 
 const filteredData = computed(() => {
   return props.data.filter((item) => {
     return (
-      (filters.value.income_id
-        ? `${item.income_id}`.includes(`${filters.value.income_id}`)
+      (filters.value.tech_size
+        ? item.tech_size.includes(filters.value.tech_size)
         : true) &&
-      (filters.value.date ? item.date.startsWith(filters.value.date) : true) &&
+      (filters.value.last_change_date
+        ? item.last_change_date.startsWith(filters.value.last_change_date)
+        : true) &&
       (filters.value.supplier_article
         ? item.supplier_article.includes(filters.value.supplier_article)
         : true)
@@ -28,33 +30,34 @@ const filteredData = computed(() => {
 <template>
   <div>
     <div>
-      <label for="filter-income_id">Фильтр по номеру дохода:</label>
-      <input v-model="filters.income_id" id="filter-income_id" />
-
-      <label for="filter-date">Фильтр по дате:</label>
-      <input v-model="filters.date" id="filter-date" type="date" />
-
+      <label for="filter-last_change_date">Фильтр по дате изменения:</label>
+      <input
+        v-model="filters.last_change_date"
+        id="filter-last_change_date"
+        type="date"
+      />
       <label for="filter-supplier_article">Фильтр по артикулу:</label>
       <input v-model="filters.supplier_article" id="filter-supplier_article" />
+      <label for="filter-tech_size">Фильтр по техническому размеру:</label>
+      <input v-model="filters.tech_size" id="filter-tech_size" />
     </div>
-
     <table>
       <thead>
         <tr>
-          <th>Номер дохода</th>
-          <th>Номер</th>
           <th>Дата</th>
           <th>Дата изменения</th>
           <th>Артикул поставщика</th>
+          <th>Технический размер</th>
+          <th>Штрих-код</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in filteredData" :key="index">
-          <td>{{ item.income_id }}</td>
-          <td>{{ item.number }}</td>
           <td>{{ item.date }}</td>
           <td>{{ item.last_change_date }}</td>
           <td>{{ item.supplier_article }}</td>
+          <td>{{ item.tech_size }}</td>
+          <td>{{ item.barcode }}</td>
         </tr>
       </tbody>
     </table>
