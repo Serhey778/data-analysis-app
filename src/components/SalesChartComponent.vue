@@ -36,7 +36,7 @@ const createIncomeChart = () => {
       labels: sortedDates,
       datasets: [
         {
-          label: 'Количество поступлений дохода',
+          label: 'Количество продаж',
           data: dataCounts,
           borderColor: 'rgba(75, 192, 192, 1)',
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -56,7 +56,7 @@ const createIncomeChart = () => {
         y: {
           title: {
             display: true,
-            text: 'Количество поступлений',
+            text: 'Количество продаж',
           },
         },
       },

@@ -27,7 +27,6 @@ const filteredData = computed(() => {
 </script>
 <template>
   <div>
-    <h1>Таблица доходов</h1>
     <div>
       <label for="filter-income_id">Фильтр по номеру:</label>
       <input v-model="filters.income_id" id="filter-income_id" />

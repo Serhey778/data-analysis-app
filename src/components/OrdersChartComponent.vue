@@ -12,18 +12,17 @@ const chartRefHours = ref(null);
 const chartInstanceHours = ref(null);
 
 const createHourChart = () => {
-  const hourCounts = Array(24).fill(0); // Массив для подсчета заказов по часам
-
+  const hourCounts = Array(24).fill(0);
   props.filteredData.forEach((item) => {
-    const hour = new Date(item.date).getHours(); // Получаем час из даты
-    hourCounts[hour]++; // Увеличиваем счетчик для соответствующего часа
+    const hour = new Date(item.date).getHours();
+    hourCounts[hour]++;
   });
 
-  const labels = Array.from({ length: 24 }, (_, i) => `${i}:00`); // Метки для часов
-  const dataCounts = hourCounts; // Данные для графика
+  const labels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
+  const dataCounts = hourCounts;
 
   if (chartInstanceHours.value) {
-    chartInstanceHours.value.destroy(); // Уничтожаем старый график, если он существует
+    chartInstanceHours.value.destroy();
   }
 
   const ctx = chartRefHours.value.getContext('2d');
